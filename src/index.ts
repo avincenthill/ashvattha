@@ -23,8 +23,9 @@ app.get('/metrics', (_req, res) => {
   res.json(dbMetrics.getSnapshot());
 });
 
-const API_VERSION = 'v1';
-app.use(`/api/${API_VERSION}/tree`, treeRouter);
+// Mount tree routes at both /api/tree (spec) and /api/v1/tree (versioned)
+app.use('/api/tree', treeRouter);
+app.use('/api/v1/tree', treeRouter);
 
 app.use(errorHandler);
 
