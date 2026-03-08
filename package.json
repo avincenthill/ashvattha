@@ -1,0 +1,33 @@
+{
+  "name": "tree-api-server",
+  "version": "1.0.0",
+  "description": "Production-ready HTTP API for managing hierarchical tree data structures",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "test": "npm run build && DB_PATH=:memory: NODE_ENV=test node --test dist/test/tree.test.js dist/test/retry.test.js dist/test/metrics.test.js dist/test/transaction.test.js dist/test/idempotency.test.js dist/test/errors.test.js dist/test/schema.test.js",
+    "test:watch": "npm run build && DB_PATH=:memory: NODE_ENV=test node --test --watch dist/test/tree.test.js dist/test/retry.test.js dist/test/metrics.test.js dist/test/transaction.test.js dist/test/idempotency.test.js dist/test/errors.test.js dist/test/schema.test.js",
+    "test:bun": "npm run build && DB_PATH=:memory: NODE_ENV=test bun test dist/test/tree.test.js && DB_PATH=:memory: NODE_ENV=test bun test dist/test/retry.test.js && DB_PATH=:memory: NODE_ENV=test bun test dist/test/metrics.test.js && DB_PATH=:memory: NODE_ENV=test bun test dist/test/transaction.test.js && DB_PATH=:memory: NODE_ENV=test bun test dist/test/idempotency.test.js && DB_PATH=:memory: NODE_ENV=test bun test dist/test/errors.test.js && DB_PATH=:memory: NODE_ENV=test bun test dist/test/schema.test.js",
+    "db:reset": "rm -f data/trees.db && npm run build && node dist/scripts/init-db.js"
+  },
+  "keywords": ["tree", "api", "express", "sqlite"],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.1",
+    "winston": "^3.17.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.9.0",
+    "@types/supertest": "^6.0.2",
+    "supertest": "^7.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}

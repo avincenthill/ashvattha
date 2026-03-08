@@ -1,0 +1,17 @@
+node_modules
+dist
+.git
+.gitignore
+*.md
+!README.md
+.env
+.env.*
+data
+*.log
+.DS_Store
+coverage
+.nyc_output
+*.test.ts
+*.test.js
+**/test
+**/*.example.ts

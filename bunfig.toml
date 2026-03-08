@@ -1,0 +1,4 @@
+# Bun test config: only run compiled tests in dist/ to avoid
+# node:test compatibility issues when Bun runs .ts source directly.
+[test]
+root = "dist"
